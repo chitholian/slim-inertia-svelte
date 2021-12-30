@@ -1,0 +1,474 @@
+@use "sass:color";
+@use "sass:math";
+
+$base-color: rgb(255, 90, 0);
+$primary: $base-color;
+$secondary: #4CAF50;
+$tertiary: #00BCD4;
+$body-bg: #f1f1f1;
+
+/* Variable Overrides */
+$theme-colors: ("primary": $base-color, "secondary": $secondary, "tertiary": $tertiary);
+
+$m-x: .2rem !default;
+$m-y: .2rem !default;
+$p-x: .5rem !default;
+$p-y: 0 !default;
+
+$input-padding-y: $p-y;
+$input-padding-x: $p-x;
+$input-btn-focus-width: 1px;
+
+$input-height: auto;
+
+$btn-padding-y: $p-y;
+$btn-padding-x: $p-x;
+
+$form-group-margin-bottom: $m-y;
+$alert-padding-y: $p-y;
+$alert-padding-x: $p-x;
+$alert-margin-bottom: $m-y;
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+$card-border-color: color.change(theme-color('primary'), $lightness: 80%);
+$input-border-color: color.change(theme-color('primary'), $lightness: 80%);
+$input-focus-border-color: theme-color('success');
+
+$login-form-logo-size: 8rem !default;
+
+$dropdown-max-height: 300px;
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+/* Our Custom Styles */
+
+$border-radius: .5rem;
+$form-logo-size: 8rem;
+
+html {
+    font-size: 14px;
+}
+
+body {
+    font-family: 'Roboto Condensed', Arial, sans-serif;
+}
+
+*:disabled {
+    cursor: not-allowed;
+}
+
+.abs-middle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.widget {
+    box-shadow: 0 .2rem .75rem color.change(theme-color("primary"), $lightness: 80%);
+    border-radius: $border-radius;
+    background: #fff;
+}
+
+img.captcha {
+    border-radius: $border-radius;
+    background: color.change(theme-color("primary"), $lightness: 95%);
+}
+
+.login-form {
+    padding-bottom: 1rem;
+    max-width: 400px;
+
+    & form {
+        margin-top: math.div(-$form-logo-size, 2);
+    }
+
+    .form-header {
+        border-radius: inherit;
+
+        & .header-bg {
+            background: theme-color("primary");
+            padding-top: $form-logo-size;
+            border-top-left-radius: inherit;
+            border-top-right-radius: inherit;
+        }
+
+        & .form-logo {
+            width: $form-logo-size;
+            height: $form-logo-size;
+            border-radius: 5rem;
+            background: theme-color("dark");
+            left: 50%;
+            bottom: 0;
+            transform: translate(-50%, -$form-logo-size * .62);
+            position: relative;
+            display: inline-block;
+
+            & .img-fluid {
+                padding: .75rem;
+                margin: 1rem auto auto .3rem;
+            }
+
+            &:after {
+                content: "";
+                display: block;
+                height: $form-logo-size + 1rem;
+                width: $form-logo-size + 1rem;
+                top: -$form-logo-size - .5rem;
+                left: -.5rem;
+                border-radius: 50%;
+                position: relative;
+                border: 0.15rem solid theme-color("primary");
+            }
+        }
+    }
+}
+
+.navbar {
+    padding-top: initial;
+    padding-bottom: initial;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+
+    & .nav-item {
+        & .dropdown-menu {
+            z-index: 9999;
+            padding: 0;
+            visibility: hidden;
+            display: block;
+            height: 0;
+            opacity: 0;
+            margin-top: auto;
+            border-top: none;
+            border-color: theme-color("primary");
+            background: white;
+            border-radius: 0 0 .3rem .3rem;
+
+            & .dropdown-item {
+                padding: 0;
+            }
+
+            & .nav-link {
+                color: theme-color("primary");
+                text-decoration: none;
+                font-size: 14px;
+
+                &:hover {
+                    color: color.change(#333, $lightness: 20%);
+                    background: color.change(theme-color("primary"), $lightness: 90%);
+                }
+            }
+        }
+
+        &.dropdown:hover .dropdown-menu {
+            visibility: visible;
+            opacity: 1;
+            height: auto;
+            transition: all .3s ease;
+
+            & > * {
+                border-top: 1px solid theme-color("primary");
+            }
+        }
+    }
+}
+
+.navbar-brand.has-logo {
+    border-radius: 50%;
+    box-sizing: content-box;
+    background: $body-bg;
+    margin: 1px;
+    padding: 3px;
+
+    & img {
+        height: 1.5rem;
+    }
+}
+
+.navbar-dark {
+    box-shadow: 0 0 .5rem rgba(0, 0, 0, .3);
+
+    & .navbar-nav {
+        flex-grow: 1;
+
+        & > .nav-item > .nav-link {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        & .nav-item {
+            position: relative;
+        }
+
+        & .nav-item:not(:first-child) { //margin-left: 1rem
+            &:before {
+                position: absolute;
+                content: "";
+                height: 60%;
+                width: 1px;
+                left: -3px;
+                background: $body-bg;
+                top: 20%;
+            }
+
+            &:after {
+                position: absolute;
+                content: "";
+                height: 40%;
+                width: 1px;
+                background: $body-bg;
+                top: 30%;
+            }
+        }
+    }
+
+    & .navbar-nav .nav-link {
+        color: white;
+    }
+
+    //&.active
+    //  background: $body-bg
+    //  box-shadow: 0 .5rem $body-bg
+    //  color: $body-color
+    //  border-top-left-radius: .8rem
+    //  border-top-right-radius: .8rem
+    //  margin-top: .2rem
+}
+
+.card {
+    & .card-header, .card-body {
+        padding: .2rem .75rem;
+    }
+
+    & textarea.card-body {
+        border: none;
+        outline: none;
+        font-family: monospace;
+    }
+}
+
+details {
+    & textarea {
+        width: 100%;
+    }
+}
+
+.conf-form {
+    & summary.card-header,
+    & summary {
+        text-align: initial;
+    }
+}
+
+@each $variant, $color in $theme-colors {
+    .card-#{$variant} .card-header {
+        background: color.change($color, $lightness: 90%);
+        color: color.change($color, $lightness: 20%);
+    }
+}
+
+.main-body {
+    min-height: calc(100vh - 130px);
+}
+
+td.ellipsis {
+    max-width: 16rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+table,
+.table {
+    & th.fit,
+    & td.fit {
+        width: 1%;
+        white-space: nowrap;
+        display: table-cell;
+        position: initial;
+        text-align: center;
+    }
+
+    & td,
+    & th {
+        vertical-align: middle;
+        padding: 1px 2px;
+    }
+}
+
+th.sort {
+    background-position: right center;
+    background-repeat: no-repeat;
+
+    &.sort-both {
+        background-image: url("img/sort_both.png");
+    }
+
+    &.sort-asc {
+        background-image: url("img/sort_asc.png");
+    }
+
+    &.sort-desc {
+        background-image: url("img/sort_desc.png");
+    }
+}
+
+.table-sm {
+    font-size: .9rem;
+}
+
+.form-inline > table {
+    width: 100%;
+
+    & td {
+        margin: auto;
+        white-space: nowrap;
+
+        & .form-control {
+            width: 100%;
+        }
+    }
+}
+
+.form-control {
+    padding: 0 2px;
+    height: auto;
+    box-shadow: none;
+
+    &:active,
+    &:focus {
+        box-shadow: 0 0 5px theme-color("success");
+        border-color: theme-color("success");
+    }
+}
+
+table.f1form {
+    width: 100%;
+    font-size: 1rem;
+    border-collapse: separate;
+    border-spacing: 0 .3rem;
+
+    & td:first-child {
+        text-align: right;
+    }
+
+    & label {
+        margin: 0 .2rem 0 0;
+        white-space: nowrap;
+    }
+}
+
+.ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.agent-files-form {
+    td:nth-child(odd) {
+        text-align: center;
+    }
+
+    & textarea {
+        width: 100%;
+    }
+}
+
+textarea {
+    font-family: monospace;
+    white-space: pre;
+    overflow: scroll;
+    overflow-wrap: normal;
+}
+
+.table td,
+.table th {
+    vertical-align: middle;
+}
+
+.table.counter {
+    counter-reset: tableRow;
+
+    & tbody tr {
+        counter-increment: tableRow;
+    }
+
+    & tbody td.Nr:after {
+        content: counter(tableRow);
+    }
+}
+
+.info-nav {
+    border-bottom: 1px solid theme-color('primary');
+}
+
+td.actions a {
+    text-decoration: none;
+    margin: auto .3rem;
+}
+
+tfoot {
+    & tr,
+    th {
+        background: color.change(orange, $lightness: 80%);
+    }
+
+    & td {
+        font-weight: bold;
+    }
+}
+
+.round-logo {
+    width: 128px;
+    height: 128px;
+    margin-left: 50%;
+    transform: translate(-50%, 50%);
+    background: #000;
+    border-radius: 50%;
+
+    &:after {
+        width: 144px;
+        height: 144px;
+        border: 2px solid theme-color("primary");
+        border-radius: 50%;
+        position: absolute;
+        content: '';
+        top: -8px;
+        left: -8px;
+    }
+}
+
+.c-pointer {
+    cursor: pointer;
+}
+
+.version-info {
+    position: fixed;
+    bottom: 2px;
+    right: 2px;
+    z-index: 9999;
+    //opacity: .15
+    background-color: $body-bg;
+    color: $body-color;
+    padding: 5px;
+    border-radius: 3px;
+    //transition: opacity .3s
+    box-shadow: 0 0 2px theme-color('dark');
+}
+
+#nprogress .bar {
+    background: theme-color('primary') !important;
+}
+
+.page-link {
+    padding: .25rem .75rem;
+}
+
+main > .container-fluid {
+    padding: 0 .25rem;
+}
