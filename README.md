@@ -23,8 +23,8 @@ No `ORM` library is used, a very simple migration system is provided.
 Migration files are created inside `app/Database/Migrations` directory.
 
 - Create a migration file: `php app/CLI/db.php -c "Your Migration Name"`.
-- Perform a migrations: `php app/CLI/db.php -m`.
-- Rollback last migration: `php app/CLI/db.php -r`.
+- Perform migrations: `php app/CLI/db.php -m`.
+- Rollback last migrations: `php app/CLI/db.php -r`.
 - Rollback all migrations: `php app/CLI/db.php -t`.
 
 ### Required Tools
