@@ -12,9 +12,15 @@ A template for web development with [Slim](https://www.slimframework.com/docs/v4
 - Compile frontend files: `yarn build`. You can use `--mode=production`.
 - Edit `app/config.php` file and set database credentials.
 - Run database migration: `php app/CLI/db.php -m`. See bellow for more about migrations.
-- Start `PHP` Built-in web server: `php -S localhost:8000 -t public/`.
-- Open [http://localhost:8000](http://localhost:8000) in your browser.
+- Start `PHP` Built-in web server: `php -S 127.0.0.1:8000 -t public/`.
+- Open [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser.
 - Default username `admin`, password: `admin`.
+
+#### Run with Webpack Dev Server
+
+- Start `PHP` server: `php -S 127.0.0.1:8000 -t public/`.
+- In another terminal start dev server: `yarn serve`.
+- Open [http://127.0.0.1:9000](http://127.0.0.1:9000) in your browser.
 
 ### Database Migrations
 

@@ -8,7 +8,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "npx webpack"
+    "build": "npx webpack",
+    "prod": "npx webpack --mode=production",
+    "serve": "npx webpack serve"
   },
   "devDependencies": {
     "@inertiajs/inertia": "^0.10.1",
@@ -26,6 +28,7 @@
     "svelte-loader": "^3.1.2",
     "webpack": "^5.65.0",
     "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.2",
     "webpack-manifest-plugin": "^4.0.2"
   },
   "dependencies": {}
