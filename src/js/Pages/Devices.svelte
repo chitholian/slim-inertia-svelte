@@ -30,6 +30,7 @@
         },
         {
             label: 'Actions',
+            field: 'trusted',
             custom: 'a',
         }
     ];
